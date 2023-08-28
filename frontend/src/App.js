@@ -6,6 +6,19 @@ import { useState } from 'react';
 
 function App() {
   const [input, setInput] = useState("")
+
+  const handleClick = (e) => {
+    fetch("http://localhost:8080/api/saveText", {
+      method: "POST",
+      body: JSON.stringify({
+        text:input
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    });
+  }
+
   return (
     <div className="App">
       <Flex
@@ -21,7 +34,7 @@ function App() {
           label="User Input"
           withAsterisk
         />
-        <Button w="20%" type='submit'>
+        <Button w="20%" onClick={handleClick}>
           Submit input
         </Button>
       </Flex>
